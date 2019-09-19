@@ -3,6 +3,10 @@ html, body {
   text-size-adjust: none;
 }
 
+h1 {
+  margin: 1.34rem 0px;
+}
+
 .wrapper.collapsed{
   /*max-height: 16ex;*/
   overflow: hidden;
