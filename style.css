@@ -1,0 +1,16 @@
+.wrapper.collapsed{
+  /*max-height: 16ex;*/
+  overflow: hidden;
+}
+
+.wrapper.uninitialized {
+  max-height: 14ex;
+}
+
+body {
+  line-height: 20px;
+}
+
+.selector {
+  overflow: hidden;
+}
