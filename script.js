@@ -57,12 +57,12 @@ function shave(maxLength,maxHeight){
 }
 
 $(function() {
-  shave(3, 120);
+  shave(3, 125);
   // shave(3);
 });
 
 $(window).on('resize orientationchange', function (event) {
-  shave(3, 120);
+  shave(3, 125);
   // shave(3);
 });
 
@@ -81,6 +81,6 @@ $(document).on('click', '#read-less', function (event) {
     .end()
     .find('#read-less')
     .replaceWith('<b id="read-more"><br>show more</b>');
-    shave(3, 120);
+    shave(3, 125);
     // shave(3);
 });
