@@ -6,9 +6,9 @@ function shave(maxLength,maxHeight){
   var sumLength = 0;
   var sumHeight = 0;
   var sumHeights = [];
-  $('.selector > *').each(function(index, el){
+  document.querySelectorAll('.selector > *').forEach(function(el){
     sumLength += el.getClientRects().length; // rows
-    sumHeight += //el.offsetHeight +
+    sumHeight += // el.offsetHeight +
                  Math.ceil(parseFloat(window.getComputedStyle(el)['marginTop'])) +
                  Math.ceil(parseFloat(window.getComputedStyle(el)['marginBottom']));
     
@@ -56,31 +56,32 @@ function shave(maxLength,maxHeight){
   }
 }
 
-$(function() {
-  shave(3, 125);
-  // shave(3);
-});
+function truncateIt() {
+  shave(3, 105);
+}
 
-$(window).on('resize orientationchange', function (event) {
-  shave(3, 125);
-  // shave(3);
-});
+function handleReadLessMore(event) {
+  if (event.target.id) {
+    if (event.target.id === 'read-more') {
+      $('.wrapper')
+        .removeClass('collapsed')
+        .end()
+        .find('#read-more')
+        .replaceWith('<b id="read-less"><br>show less</b>');
+      $('.wrapper').height('');
+    } else if (event.target.id === 'read-less') {
+      $('.wrapper')
+        .addClass('collapsed')
+        .end()
+        .find('#read-less')
+        .replaceWith('<b id="read-more"><br>show more</b>');
+        truncateIt();
+        // shave(3);
+    }
+  }
+}
 
-$(document).on('click', '#read-more', function (event) {
-  $('.wrapper')
-    .removeClass('collapsed')
-    .end()
-    .find('#read-more')
-    .replaceWith('<b id="read-less"><br>show less</b>');
-  $('.wrapper').height('');
-});
-
-$(document).on('click', '#read-less', function (event) {
-  $('.wrapper')
-    .addClass('collapsed')
-    .end()
-    .find('#read-less')
-    .replaceWith('<b id="read-more"><br>show more</b>');
-    shave(3, 125);
-    // shave(3);
-});
+document.addEventListener('DOMContentLoaded', truncateIt);
+window.addEventListener('resize', truncateIt);
+window.addEventListener('orientationchange', truncateIt);
+document.addEventListener('click', handleReadLessMore);
